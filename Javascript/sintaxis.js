@@ -89,3 +89,51 @@ let ejecucion1 = tipoVoid();
 let ejecucion2 = tipoReturn();
 console.log(ejecucion1);
 console.log(ejecucion2);
+
+
+//Funciones con parametros -> Funciones que trabajan con datos que vienen de fuera
+//NotANumber NaN -> No es un numero lo que se intenta aplicar a un operador matematico
+function sumar(num1,num2){
+    return num1+num2;
+}
+
+let resultado = sumar(15,5);
+console.log(resultado);
+
+
+//Funcion flecha
+//Declaracion
+function funcionExpresada( ){ 
+
+}
+
+/*
+CONSTANTE nombreFuncion asignamos parametros flecha llaves CODIGO A EJECUTAR
+const       funcionFlecha  =        ()         =>   {      log()        }
+*/
+const funcionFlecha = (num1, num2) => {
+    return num1-num2; 
+}
+
+
+//Callback -> RECIBE UNA FUNCION PARA PONERLA A FUNCIONAR
+function funcionCallback(funcion){
+    //Recibi una funcion por lo tanto la ejecuto
+    funcion();
+}
+
+function funcionAuxiliar(){
+    console.log("Estoy funcionando pero desde el callback");
+}
+
+funcionCallback(funcionAuxiliar);
+
+//Callback con funcionFlecha ANONIMA
+funcionCallback( () => { console.log("Te saludo desde la funcion flecha anonima jeje saludos");
+});
+
+funcionCallback(function () { console.log(
+    "Holiwis desde la funcion anonima expresada");})
+
+
+
