@@ -37,3 +37,44 @@ btnApretable.addEventListener('click', () => {
         console.log("Despues del alert, COPPERFIELD");
         
  })
+
+
+ function apretandoBoton(){
+    let nombre = prompt("Ingresa tu nombre");
+    let apellido = prompt("Ingresa tu apellido")
+    alert(nombre+" "+apellido);
+
+ }
+//camelCase
+ function cambiandoInput(e){
+    console.log(e.target.value);
+    
+    console.log("Cambie");
+ }
+
+
+
+ function filtrarMultiplosDeTres(arr){
+    if(arr.length < 1) {return arr;}
+
+    let resultado = []
+    let suma = 0;
+    let i = 0;
+
+    while(i < arr.length){
+        if(arr[i] % 3 === 0){
+            suma += arr[i];
+            
+            if(suma < 100){
+                resultado.push(arr[i])
+            }else{
+                return resultado;
+            }
+        }
+        i++;
+    }
+    return resultado;
+ }
+
+ let array = [12,9,21,33,45,50,17,11];
+console.log( filtrarMultiplosDeTres(array));
