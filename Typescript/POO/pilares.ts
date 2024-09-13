@@ -1,8 +1,8 @@
 //4 Pilares POO 
 
 /* 
-    Herencia
-    Polimorfismo
+    Herencia -> Capacidad de una subclase de obtener todo de su clase padre
+    Polimorfismo -> Cuando el mismo metodo cambia de comportamiento entre la clase hija y su padre
 
     Encapsulamiento -> Limitar el acceso a algo a traves de MODIFICADORES DE ACCESO
     Abstraccion -> Nos da herramientas para interactuar con lo que este limitado de una clase
@@ -26,7 +26,7 @@ class Person{
         this.dui = duiParam;
     }
 
-    respirar(){
+    respirar():void{
         console.log("Afff");
     }
 
@@ -34,15 +34,56 @@ class Person{
     getName():string {
         return this.name;
     }
-
+    
+    getAge(){
+        return this.age;
+    }
+    
+    getDui(){
+        return this.dui;
+    }
     
     setAge(ageParam:number){
         this.age = ageParam;
     }
-
+    
 }
 
 let personita = new Person("Jairo Vega",75,"0105080-3");
 //personita.name = "Hector";
 console.log(personita);
 console.log(personita.getName());
+
+class Developer extends Person{
+    private exp:number;
+    private techSkills:string[];
+    private softSkills:string[];
+    private gitUser:string;
+    private area:string;
+    private projects:string[];
+
+    constructor(nameParam:string,ageParam:number,duiParam:string,expParam:number,techSkillsParam:string[],softSkillsParam:string[],gitUserParam:string,areaParam:string,projectsParam:string[]){
+        super(nameParam,ageParam,duiParam);
+        this.exp = expParam;
+        this.techSkills = techSkillsParam;
+        this.softSkills = softSkillsParam;
+        this.gitUser = gitUserParam;
+        this.area = areaParam;
+        this.projects = projectsParam;
+    }
+
+    getArea():string{
+        return this.area;
+    }
+
+    respirar(): void {
+        console.log("Sniff sniff");
+    }
+}
+
+let developercito = new Developer("Will",19,"1234567-8",3,["Javascript","HTML","CSS","BOOTSTRAP","TYPESCRIPT"],["Comunicacion Efectiva","Proactivo","Liderazgo","Autocritica"],"willGitUser","Backend Developer",["APIS"]);
+developercito.getArea();
+
+
+personita.respirar();
+developercito.respirar();
