@@ -25,6 +25,7 @@ document.querySelector<HTMLDivElement>('#app')!.innerHTML = `
         <button type="submit">Agregar producto</button>
       </form>
 
+      <ul id="productsList"></ul>
   </div>
 `
 
@@ -33,6 +34,8 @@ const tienda = new Tienda();
 
 //document.querySelector<HTMLElement>('#parrafo')!.innerText = "Esto es texto desde el p";
 const form = document.getElementById("formProducto") as HTMLFormElement;
+
+const productList = document.getElementById("productsList") as HTMLUListElement;
 
 form.addEventListener('submit', (e:SubmitEvent) => {
     e.preventDefault();
@@ -54,3 +57,20 @@ form.addEventListener('submit', (e:SubmitEvent) => {
     tienda.agregarProducto(productito);
 });
 
+function renderProductos(){
+  productList.innerHTML = "";
+
+  console.log(tienda.listarProductos());
+  
+  tienda.listarProductos().map( (producto:Producto) => {
+    const productoItem = document.createElement('li');
+    console.log(producto);
+      
+      productoItem.textContent = `${producto.getNombre()} - ${producto.getCantidad()} - $ ${producto.getPrecio()}  `
+      productList.appendChild(productoItem)
+  })
+
+
+}
+
+renderProductos()
