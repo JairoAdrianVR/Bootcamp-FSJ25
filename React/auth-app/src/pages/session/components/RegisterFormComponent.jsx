@@ -36,6 +36,7 @@ export const RegisterFormComponent = () => {
 
   return (
     <div>
+        <h2>Register Form</h2>
         <form onSubmit={handleSubmit(onSubmitForm)} >
             <label> Email</label>
             <input type="text" id="email" placeholder="Example: Email@mail.com" {... register('email') }/>

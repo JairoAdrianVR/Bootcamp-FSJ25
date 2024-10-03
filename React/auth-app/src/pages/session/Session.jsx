@@ -1,3 +1,4 @@
+import { LoginFormComponent } from "./components/LoginFormComponent"
 import { RegisterFormComponent } from "./components/RegisterFormComponent"
 
 export const Session = () => {
@@ -7,6 +8,7 @@ export const Session = () => {
    <>
       <h1>Manejo de sesion</h1>
       <RegisterFormComponent />
+      <LoginFormComponent />
    </>
   )
 }
