@@ -4,7 +4,7 @@ import { auth } from "../../../firebase/config";
 
 export const LoginFormComponent = () => {
 
-    const {register,handleSubmit } = useForm();
+    const {register,handleSubmit} = useForm();
 
     const onSubmitForm = (data) => {
         console.log(data);
@@ -14,11 +14,9 @@ export const LoginFormComponent = () => {
             // Signed in 
             const user = userCredential.user;
             console.log(user);
-            
+            alert("Inicio de sesion con exito. Bienvenido!")
             })
         .catch((error) => {
-        const errorCode = error.code;
-        const errorMessage = error.message;
         console.error(error);
         
     });
