@@ -1,11 +1,18 @@
 import { useForm } from "react-hook-form"
 import { signInWithEmailAndPassword } from "firebase/auth";
 import { auth } from "../../../firebase/config";
+import { useNavigate } from "react-router-dom";
+import { useContext } from "react";
+import { UserContext } from "../../../context/UserDataContext";
 
 export const LoginFormComponent = () => {
 
     const {register,handleSubmit} = useForm();
+    const navigate = useNavigate();
 
+    const {user,setUser} = useContext(UserContext);
+
+    
     const onSubmitForm = (data) => {
         console.log(data);
         
@@ -14,7 +21,11 @@ export const LoginFormComponent = () => {
             // Signed in 
             const user = userCredential.user;
             console.log(user);
+            setUser(user);
+
             alert("Inicio de sesion con exito. Bienvenido!")
+
+            navigate("/")
             })
         .catch((error) => {
         console.error(error);
