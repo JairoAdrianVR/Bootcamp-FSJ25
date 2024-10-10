@@ -1,11 +1,15 @@
+import { addDoc, collection } from 'firebase/firestore';
 import {useForm} from 'react-hook-form';
-
+import { db } from '../../firebase/config';
 
 export const Products = () => {
     const {register,handleSubmit } = useForm()
 
-    const addProduct = (data) => {
+    const addProduct = async (data) => {
         console.log(data);
+        
+      let response =  await addDoc(collection(db,'products'),data )
+        console.log(response);
         
     }
 
