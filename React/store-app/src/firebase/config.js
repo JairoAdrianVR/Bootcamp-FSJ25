@@ -6,7 +6,7 @@ import { getFirestore } from "firebase/firestore";
 // Your web app's Firebase configuration
 const firebaseConfig = {
  //Datos de tu CONFIG de FIREBASE
- 
+
 };
 
 // Initialize Firebase
