@@ -2,22 +2,25 @@ import { addDoc, collection,deleteDoc,doc,getDocs, updateDoc } from 'firebase/fi
 import {useForm} from 'react-hook-form';
 import { db } from '../../firebase/config';
 import { useEffect, useState } from 'react';
+import {  getProducts } from '../../services/BootcampService';
 
 export const Products = () => {
     const {register,handleSubmit,reset,setValue} = useForm()
     const [products,setProducts] = useState([]);
     const [editId, setEditId] = useState(null);
 
-    /* getProducts -> Obtener/traer TODOS los documentos de la coleccion  */
-
+    /* getProducts -> Obtener/traer TODOS los documentos de la coleccion  
     const getProducts = async () => { //...doc.data() -> {name:"Doritos","price":2,"stock":5}
         const productsCollection =   await getDocs(collection(db,'products'))
         const data = productsCollection.docs.map(  (doc) => ( {...doc.data(), id: doc.id } )
           )
         console.log(data);
         setProducts(data);
+    }*/
+    const fetchProducts = async () => { 
+        const products = await getProducts();
+        setProducts(products)
     }
-    
     /* AddProduct -> Guardamos un documento en la coleccion  */
 
     const addProduct = async (data) => {
@@ -77,7 +80,7 @@ export const Products = () => {
 
     useEffect(()=> {
             //Ejecutamos funciones al momento de montar un componente
-            getProducts();
+            fetchProducts()
         },[]
     )
 
@@ -112,7 +115,7 @@ export const Products = () => {
                     </tr>
                 </thead>
                 <tbody>
-            {
+            {   products.length > 0 ? 
                 /* Listar los productos */
                 products.map((product) => {
                 return  <tr key={product.id} >
@@ -124,7 +127,7 @@ export const Products = () => {
                             <button onClick={()=>{deleteProduct(product.id)}}>Delete</button>
                         </td>
                     </tr>
-                })
+                }) : <h1>Loading</h1>
             }
             </tbody>
             </table>
