@@ -111,5 +111,78 @@
     $pilaRopa->delete();
     print_r($pilaRopa);
 
+    // Queue o Colas -> FIFO -> FirstInFirstOut
 
+    class Queue { 
+        public $queue;
+
+        function __construct()
+        {
+            $this->queue = array();
+        }
+
+        function enqueue($value){
+            array_push($this->queue,$value);
+        }
+
+        function dequeue(){
+            return array_shift($this->queue);
+        }
+    }
+
+    $caseta1 = new Queue();
+    $caseta1->enqueue("Rafa");
+    $caseta1->enqueue("Diego");
+    $caseta1->enqueue("Claudia");
+    print("Dato eliminado: {$caseta1->dequeue()} \n");
+
+    print_r($caseta1);
+
+    class Node{
+        public $value;
+        public $next;
+
+        function __construct($data)
+        {
+            if($data === null ){
+                $this->value = 0;
+                $this->next = null;
+            }else{
+            $this->value = $data;
+            $this->next = null;
+        }
+        }
+    }
+
+    class LinkedList{
+        public $head;
+
+        function __construct()
+        {
+            $this->head = null;
+        }
+
+        function insert($data){
+            $newNode = new Node($data);
+
+            if($this->head === null){
+                $this->head = $newNode;
+            }else{
+                //Variable auxiliar
+                $aux = $this->head;
+
+                while($aux->next !== null){
+                    $aux = $aux->next;
+                }
+
+                $aux->next = $newNode;
+            }
+        }
+    }
+    
+    $listita = new LinkedList();
+    $listita->insert(3);
+    $listita->insert(5);
+    $listita->insert(100);
+    print_r($listita);
     ?> 
