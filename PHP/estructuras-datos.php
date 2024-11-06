@@ -137,7 +137,7 @@
     print("Dato eliminado: {$caseta1->dequeue()} \n");
 
     print_r($caseta1);
-
+  /*
     class Node{
         public $value;
         public $next;
@@ -221,4 +221,63 @@
     $listita->insert(100);
     $listita->delete(5);
     print_r($listita);
+
+*/
+
+    class Node{
+        public $value;
+        public $left;
+        public $right;
+
+        function __construct($data)
+        {
+            $this->value = $data;
+            $this->left = null;
+            $this->right = null;
+        }
+    }
+
+    class BinaryTree{
+        public $root;
+
+        function __construct()
+        {
+            $this->root = null;
+        }
+
+        function insert($data){
+            //Creamos el nuevo nodo con el valor
+            $newNode = new Node($data);
+
+            // CHEQUEAMOS SI LA RAIZ ESTA VACIA
+            if($this->root === null){
+                //Guardamos el nuevo nodo en la raiz
+                $this->root = $newNode;
+                return $this->root;
+            }
+
+            //Variable auxiliar para luego ir avanzando de nodo iniciando en la RAIZ
+            $currentNode = $this->root;
+
+            //Comparamos el valor del nuevo nodo, con respecto al nodo ACTUAL
+            if($newNode->value > $currentNode->value){
+                //CASO EN QUE SEA MAYOR
+                $currentNode->right = $newNode;
+                return $newNode;
+            }else{
+                //CASO EN QUE SEA MENOR
+                $currentNode->left = $newNode;
+                return $newNode;
+            }
+           
+        }
+
+    }
+
+    $arbolito = new BinaryTree();
+    $arbolito->insert(5);
+    $arbolito->insert(10);
+    $arbolito->insert(3);
+    $arbolito->insert(15);
+    print_r($arbolito);
     ?> 
