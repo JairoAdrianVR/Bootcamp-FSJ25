@@ -50,6 +50,10 @@
     //ARRAYS ASOCIATIVOS
     $arrayzote = [ "nombre" => "Jairo", "apellido" => "Vega Romero"];
     print_r($arrayzote);
+    //ARRAY
+    $arrayAsoc = ["A" => 2, "R" => 2, "Y" => 1 ];
+    print_r($arrayAsoc);
+    
     print_r(array_key_last($arrayzote));
     echo "\n";
     print_r($arrayzote[array_key_last($arrayzote)]);
@@ -258,18 +262,28 @@
 
             //Variable auxiliar para luego ir avanzando de nodo iniciando en la RAIZ
             $currentNode = $this->root;
+            $flag = true;
+            while($flag){
+                //CUANDO EL NODO YA EXISTA PREVIAMENTE
+                if($newNode->value == $currentNode->value) return "Che cuchame, ya existe pa \n";
 
-            //Comparamos el valor del nuevo nodo, con respecto al nodo ACTUAL
+                //Comparamos el valor del nuevo nodo, con respecto al nodo ACTUAL
             if($newNode->value > $currentNode->value){
                 //CASO EN QUE SEA MAYOR
-                $currentNode->right = $newNode;
-                return $newNode;
+                if($currentNode->right === null ){
+                    $currentNode->right = $newNode;
+                    return $newNode;
+                }
+                $currentNode = $currentNode->right;
             }else{
                 //CASO EN QUE SEA MENOR
-                $currentNode->left = $newNode;
-                return $newNode;
+                if($currentNode->left === null){
+                    $currentNode->left = $newNode;
+                    return $newNode;
+                }
+                $currentNode = $currentNode->left;
             }
-           
+            }
         }
 
     }
@@ -279,5 +293,7 @@
     $arbolito->insert(10);
     $arbolito->insert(3);
     $arbolito->insert(15);
+    $arbolito->insert(12);
+    print($arbolito->insert(12));
     print_r($arbolito);
     ?> 
