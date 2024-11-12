@@ -286,14 +286,47 @@
             }
         }
 
+        function delete($data){
+            $this->root = $this->deleteNode($data,$this->root);
+        }
+
+        function deleteNode($data,$node){
+
+            if($node === null){
+                return null;
+            }
+
+            if($data < $node->value){
+                $node->left = $this->deleteNode($data,$node->left);
+            }else if( $data > $node->value){
+                $node->right = $this->deleteNode($data,$node->right);
+            }else{
+                
+                if($node->left === null){
+                    return $node->right;
+                }elseif($node->right === null){
+                    return $node->left;
+                }
+
+                $node->right = $this->deleteNode($node->value,$node->right);
+            }
+            return $node;
+        }
+
     }
+
+
+
 
     $arbolito = new BinaryTree();
     $arbolito->insert(5);
     $arbolito->insert(10);
     $arbolito->insert(3);
+    $arbolito->insert(1);
     $arbolito->insert(15);
     $arbolito->insert(12);
     print($arbolito->insert(12));
+    $arbolito->delete(15);
+    $arbolito->delete(3);
     print_r($arbolito);
     ?> 
