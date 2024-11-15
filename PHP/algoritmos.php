@@ -53,4 +53,45 @@
         return $arr;     
     }
 
+
+    function mergeSort($arr){
+
+        if(count($arr) <= 1) return $arr;
+
+        $mid = floor(count($arr)/2);
+
+        $left = array_slice($arr,0,$mid);
+        $right = array_slice($arr,$mid);
+
+        $left = mergeSort($left);
+        $right = mergeSort($right);
+
+        //print_r($left);
+        //print_r($right);
+        return merge($left,$right);
+    }
+
+    function merge($left, $right){
+        $result = [];
+
+        while(count($left) > 0 && count($right) > 0){
+            if($left[0] <= $right[0]){
+                array_push($result,array_shift($left));
+            }else{
+                array_push($result,array_shift($right));
+            }
+        }
+
+        while(count($left) > 0){
+            array_push($result,array_shift($left));
+        }
+
+        while(count($right) > 0){
+            array_push($result,array_shift($right));
+        }
+
+        return $result;
+    }
+
+    print_r(mergeSort([5,1,3,2,8,7,6]));
 ?>
