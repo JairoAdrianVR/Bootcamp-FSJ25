@@ -10,7 +10,7 @@
         $_SESSION['aerolineas'] = [];
     }
 
-    $aerolineas =  $_SESSION['aerolineas'] ;
+    $aerolineas =  $_SESSION['aerolineas'];
 
     if(isset($_POST['nombre'],$_POST['cantAviones'],$_POST['tipoAerolinea'])){
         //print_r($_POST);
@@ -20,13 +20,15 @@
         $tipo = $_POST['tipoAerolinea'];
 
         $aerolinea = new Aerolinea($nombre,$cantAviones,$tipo);
-        print_r($aerolinea);
+        //print_r($aerolinea);
         array_push($aerolineas,$aerolinea);
-        echo "<br/>";
+        //echo "<br/>";
         $_SESSION['aerolineas'] = $aerolineas;
+
+        header('Location: /FSJ25/aerolinea_project/');
     }
     
-    print_r($aerolineas);
+    //print_r($aerolineas);
 
 
 ?>
@@ -38,7 +40,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>CRUD Aerolinea</title>
 </head>
-<body>
+<body style="background-color: grey;">
     <h1>Holiwis</h1>
 
     <form method="POST" action="">
@@ -57,5 +59,41 @@
 
         <button type="submit">Registrar Aerolinea</button>
     </form>
+
+    <main>
+        <table>
+                <thead>
+                    <th>Nombre</th>
+                    <th>Cantidad Aviones</th>
+                    <th>Tipo Aerolinea</th>
+                </thead>
+                <tbody>
+                <?php foreach($aerolineas as $aerolinea){   
+                   echo " <tr>
+                        <td>{$aerolinea->getNombre()}</td>
+                        <td>{$aerolinea->getCant_aviones()}</td>
+                        <td>{$aerolinea->getTipo_aerolinea()}</td>
+                    </tr>";
+
+                } ?>
+
+                <?php foreach($aerolineas as $aerolinea):?>
+                    <tr>
+                        <td><?php print "{$aerolinea->getNombre()}" ?></td>
+                        <td><?php echo "{$aerolinea->getCant_aviones()}" ?></td>
+                        <td><?php echo "{$aerolinea->getTipo_aerolinea()}" ?></td>
+                    </tr>
+                <?php endforeach ?>
+
+                <?php foreach($aerolineas as $aerolinea):
+                 echo" <tr>
+                        <td>{$aerolinea->getNombre()} </td>
+                        <td>{$aerolinea->getCant_aviones()} </td>
+                        <td>{$aerolinea->getTipo_aerolinea()}</td>
+                    </tr> ";
+                     endforeach ?>
+                </tbody>
+        </table>
+    </main>
 </body>
 </html>
