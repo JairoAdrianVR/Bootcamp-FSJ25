@@ -1,6 +1,5 @@
 <?php 
     interface IAuto{
-
        function aumentarVelocidad();
        function disminuirVelocidad();
     }
