@@ -22,15 +22,20 @@
        
        public function actualizarStock($stock){
               // Recibir el stock y actualizar el stock actual con el nuevo
-
+              $this->stock = $stock;
         }
 
-        public function  editarProducto($descripcion,$proveedor,$categoria, $nombre){
+        public function  editarProducto($datos){
               // Recibir los nuevos valores como Param(desc. prov., cat. y nombre) y reemplazar los atributos actuales con los nuevos y validar valores 
-        }
+              $this->nombre = $datos['nombre'] ?? $this->nombre;
+              $this->descripcion = $datos['descripcion'] ?? $this->descripcion;
+              $this->precio = $datos['precio'] ?? $this->precio;
+              $this->categoria = $datos['categoria'] ?? $this->categoria;
+       }
 
         public function actualizarPrecio($precio){
             //Actualizar el precio de un producto, recibiendo el precio nuevo
+            $this->precio = $precio;
         }
 
          /**

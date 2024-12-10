@@ -14,10 +14,15 @@
         
         function registroVenta($usuario){
             //Registrar una venta con un usario referenciado
+
         }
 
         function calcularTotal(){
             //Metodo para  calcular total de la venta
+            foreach ($this->listaProductos as $key => $producto) {
+               $this->total += $producto->getPrecio();
+            }
+            return $this->total;
         }
 
         /**

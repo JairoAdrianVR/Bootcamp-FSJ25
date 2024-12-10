@@ -20,10 +20,15 @@
                  unset($this->listaProducto[$key]); 
                     return true;}
             }
+            
         }
 
-        public function buscarProductoPorCategoria(){
+        public function buscarProductoPorCategoria($categoria){
             // Filtrar la lista de productos por la categoria buscada
+
+            return array_filter($this->listaProductos, function($producto) use ($categoria) {
+                return $producto->categoria === $categoria;
+            });
         }
 
         public function generarInforme(){
