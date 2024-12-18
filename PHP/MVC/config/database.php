@@ -1,8 +1,8 @@
 <?php 
 
     class Database{
-        public $host = "";
-        public $dbname = "";
+        public $host = "localhost";
+        public $dbname = "empresa";
         public $username = "root";
         public $password = "";
         public $conn;

@@ -4,6 +4,7 @@
 
     $action = isset($_GET['action']) ? $_GET['action'] : 'read';
     $id = isset($_GET['id']) ? $_GET['id']: '';
+    
 
     switch($action){
         case 'read':
@@ -19,5 +20,5 @@
             $controller->delete($id);
             break;
     }
-     
+
 ?>
