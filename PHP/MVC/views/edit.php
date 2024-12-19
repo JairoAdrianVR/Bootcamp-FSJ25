@@ -9,18 +9,19 @@
 <body>
     <?php include './views/layouts/navbar.php'?>
     <main class="container mt-2"> 
+            <?php print_r($product)?>
             <h2 class="text-center">Editar producto</h2>
         <section class="d-flex justify-content-center">
             <article class="card col-8" >
-            <form class="form-control" action="./index.php?action=update&id=" method="POST">
+            <form class="form-control" action="./index.php?action=update&id=<?php echo $product['id'] ?>" method="POST">
                 <label class="form-label" for="">Nombre</label>
-                <input class='form-control' type="text" name="nombre" >
+                <input class='form-control' type="text" name="nombre" value="<?php echo $product['nombre'] ?> ">
                 <label class="form-label" for="">Precio</label>
-                <input class='form-control' type="text" name="precio" >
-                <label class="form-label" for="">Descuento</label>
-                <input class='form-control' type="text" name="descuento">
+                <input class='form-control' type="text" name="precio" value="<?php echo $product['precio'] ?> ">
                 <label class="form-label" for="">Cantidad</label>
-                <input class='form-control' type="text" name="cantidad">
+                <input class='form-control' type="text" name="cantidad" value="<?php echo $product['cantidad'] ?> ">
+                <label class="form-label" for="">Proveedor</label>
+                <input class='form-control' type="text" name="proveedor" value="<?php echo $product['proveedor'] ?> ">
                 <button class="btn btn-success mt-2" type="submit">Editar</button>
             </form>
             </article>

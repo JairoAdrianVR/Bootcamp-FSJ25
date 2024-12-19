@@ -9,6 +9,7 @@
 <body class="bg-light">
     <?php include './views/layouts/navbar.php'?>
     <main class="container mt-2">
+
         <a href="./index.php?action=create" class="btn btn-success">Agregar producto</a>
 
         <table class="table m-2">
@@ -23,16 +24,18 @@
     </tr>
   </thead>
   <tbody>
+    <?php foreach($products as $product ): ?>
     <tr>
-      <th scope="row">1</th>
-      <td>Teclado</td>
-      <td>5</td>
-      <td>10</td>
-      <td>Keychron</td>
-      <td><a href="./index.php?action=update&id=" class="btn btn-warning">Editar </a>
-      <a href="./index.php?action=delete&id=" class="btn btn-danger">Eliminar </a>
+      <th scope="row"><?php echo $product['id'] ?></th>
+      <td><?php echo $product['nombre'] ?></td>
+      <td><?php echo $product['precio'] ?></td>
+      <td><?php echo $product['cantidad'] ?></td>
+      <td><?php echo $product['proveedor'] ?></td>
+      <td><a href="./index.php?action=update&id=<?php echo $product['id'] ?>" class="btn btn-warning">Editar </a>
+      <a href="./index.php?action=delete&id=<?php echo $product['id'] ?>" class="btn btn-danger">Eliminar </a>
       </td>
     </tr>
+    <?php endforeach?>
   </tbody>
 </table>
     </main>

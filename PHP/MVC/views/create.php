@@ -17,10 +17,10 @@
                 <input class='form-control' type="text" name="nombre">
                 <label class="form-label" for="">Precio</label>
                 <input class='form-control' type="text" name="precio">
-                <label class="form-label" for="">Descuento</label>
-                <input class='form-control' type="text" name="descuento">
                 <label class="form-label" for="">Cantidad</label>
                 <input class='form-control' type="text" name="cantidad">
+                <label class="form-label" for="">Proveedor</label>
+                <input class='form-control' type="text" name="proveedor">
                 <button class="btn btn-success mt-2" type="submit">Crear</button>
             </form>
             </article>
