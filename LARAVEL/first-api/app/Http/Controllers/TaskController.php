@@ -12,23 +12,29 @@ class TaskController extends Controller
      */
     public function index()
     {
-        //
+        // Obtenemos todas las tareas
+        $tasks = Task::all();
+
+        // Retornamos la respuesta en formato JSON
+        return response()->json([
+            'data' => $tasks
+        ]);
     }
 
-    /**
-     * Show the form for creating a new resource.
-     */
-    public function create()
-    {
-        //
-    }
 
     /**
      * Store a newly created resource in storage.
      */
     public function store(Request $request)
     {
-        //
+        // Creamos una nueva tarea
+       $task = Task::create($request->all());
+
+       //Retornamos un mensaje y el objeto creado
+       return response()->json([
+        'message' => 'Task created successfully',
+        'data' => $task
+       ]);
     }
 
     /**
