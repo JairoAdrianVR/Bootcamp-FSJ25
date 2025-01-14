@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\Task;
 use Illuminate\Http\Request;
 
+
 class TaskController extends Controller
 {
     /**
@@ -12,6 +13,12 @@ class TaskController extends Controller
      */
     public function index()
     {
+        /* QUERY BUILDER
+        $tasks = DB::table('tasks')
+        ->select('name', 'description', 'completed')
+        ->get();
+        */
+
         // Obtenemos todas las tareas
         $tasks = Task::all();
 
@@ -46,26 +53,36 @@ class TaskController extends Controller
     }
 
     /**
-     * Show the form for editing the specified resource.
-     */
-    public function edit(Task $task)
-    {
-        //
-    }
-
-    /**
      * Update the specified resource in storage.
      */
-    public function update(Request $request, Task $task)
+    public function update(Request $request, string $id)
     {
-        //
+        //Buscar la tarea por el ID
+        $task = Task::findOrFail($id);
+
+        //Actualizar la tarea
+        $task->update($request->all());
+
+        return response()->json([
+            'message' => 'Task updated successfully',
+            'data' => $task
+        ]);
+
     }
 
     /**
      * Remove the specified resource from storage.
      */
-    public function destroy(Task $task)
+    public function destroy(string $id)
     {
-        //
+        //Buscar la tarea por el ID
+        $task = Task::findOrFail($id);
+
+        //Eliminar la tarea
+        $task->delete();
+
+        return response()->json([
+            'message' => 'Task deleted successfully'
+        ]);
     }
 }
